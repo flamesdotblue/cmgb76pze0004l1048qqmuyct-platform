@@ -1,19 +1,11 @@
-import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
-import { ArrowRight, Rocket, Sparkles } from 'lucide-react';
+import { ArrowRight, Rocket, Sparkles, Laptop } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section id="home" className="relative h-[92vh] w-full overflow-hidden">
-      {/* 3D Spline Scene */}
-      <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/oRrPvYYzPQFRFKuU/scene.splinecode" style={{ width: '100%', height: '100%' }} />
-      </div>
-
-      {/* Futuristic overlays */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.10),transparent_60%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.06)_0,rgba(255,255,255,0.06)_1px,transparent_1px,transparent_3px)]" />
-      <div className="pointer-events-none absolute -inset-[20%] -z-0 animate-[spin_30s_linear_infinite] rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,rgba(168,85,247,0.12),rgba(56,189,248,0.12),rgba(168,85,247,0.12))]" />
+      {/* Tech 3D Backdrop */}
+      <TechBackdrop />
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center px-4">
@@ -28,7 +20,7 @@ export default function Hero() {
 
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-xs text-zinc-300 backdrop-blur-md">
             <Rocket size={14} className="text-fuchsia-400" />
-            Crafting immersive web futures
+            Creative Developer Portfolio
           </div>
 
           <h1 className="mt-4 text-[2.6rem] font-semibold leading-[1.08] tracking-tight sm:text-6xl">
@@ -38,7 +30,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-4 max-w-xl text-zinc-300">
-            Creative developer merging real‑time 3D, motion, and systems thinking to ship beautiful, performant products.
+            Merging real‑time 3D, motion, and systems thinking to ship beautiful, performant products.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -62,7 +54,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.7 }}
           className="pointer-events-none absolute right-6 top-24 hidden select-none md:block"
         >
-          <FloatingChip title="Spline / WebGL" hue="from-sky-400 to-cyan-300" y={0} delay={0.1} />
+          <FloatingChip title="WebGL / Spline" hue="from-sky-400 to-cyan-300" y={0} delay={0.1} />
           <FloatingChip title="Motion Design" hue="from-fuchsia-400 to-violet-400" y={80} delay={0.2} />
           <FloatingChip title="Performance First" hue="from-emerald-400 to-teal-300" y={160} delay={0.3} />
         </motion.div>
@@ -78,14 +70,153 @@ function FloatingChip({ title, hue, y = 0, delay = 0 }) {
       animate={{ opacity: 1, y }}
       transition={{ duration: 0.8, delay }}
       className={`relative mb-5 w-[220px] rounded-2xl border border-white/10 bg-white/5 p-3 backdrop-blur-xl`}
-      style={{
-        boxShadow:
-          '0 0 0 1px rgba(255,255,255,0.05) inset, 0 10px 30px rgba(168,85,247,0.08)'
-      }}
+      style={{ boxShadow: '0 0 0 1px rgba(255,255,255,0.05) inset, 0 10px 30px rgba(168,85,247,0.08)' }}
     >
       <div className={`pointer-events-none absolute -right-6 -top-6 h-16 w-16 rounded-full bg-gradient-to-br ${hue} opacity-40 blur-xl`} />
       <div className="text-xs text-zinc-300">Capability</div>
       <div className="mt-1 font-medium text-white">{title}</div>
     </motion.div>
   );
+}
+
+function TechBackdrop() {
+  return (
+    <div className="absolute inset-0">
+      {/* Gradient atmosphere */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.10),transparent_60%)]" />
+      {/* Soft grid */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(255,255,255,0.6)_1px,transparent_1px)] [background-size:22px_22px]" />
+
+      {/* 3D Scene container with perspective */}
+      <div className="relative h-full w-full [perspective:1200px]">
+        {/* Central laptop silhouette/card */}
+        <motion.div
+          initial={{ rotateX: 15, rotateY: -10, y: 20, opacity: 0 }}
+          animate={{ rotateX: 15, rotateY: -10, y: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+          className="absolute left-1/2 top-1/2 h-[340px] w-[520px] -translate-x-1/2 -translate-y-1/2 [transform-style:preserve-3d]"
+          style={{ filter: 'drop-shadow(0 40px 100px rgba(168,85,247,0.25))' }}
+        >
+          {/* Laptop base */}
+          <div className="absolute left-1/2 top-1/2 h-[18px] w-[560px] -translate-x-1/2 -translate-y-[calc(50%-170px)] rounded-[14px] bg-gradient-to-b from-white/20 to-white/5 shadow-[0_10px_60px_-10px_rgba(56,189,248,0.35)]" />
+
+          {/* Screen */}
+          <motion.div
+            animate={{ rotateX: [0, 5, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute inset-0 rounded-[16px] border border-white/15 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl [transform:translateZ(40px)] overflow-hidden"
+          >
+            {/* Bezel */}
+            <div className="absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/10" />
+            {/* Top bar */}
+            <div className="flex items-center gap-2 px-3 py-2 text-[10px] text-zinc-300">
+              <span className="inline-flex h-2 w-2 rounded-full bg-red-400/80" />
+              <span className="inline-flex h-2 w-2 rounded-full bg-amber-300/80" />
+              <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400/80" />
+              <span className="ml-2 inline-flex items-center gap-1 text-xs text-zinc-300/90"><Laptop size={12} /> dev-session.js</span>
+            </div>
+
+            {/* Code panes */}
+            <div className="grid h-full grid-cols-12 gap-2 p-3 pr-4">
+              <div className="col-span-3 hidden rounded-md border border-white/10 bg-black/30 p-2 sm:block">
+                <div className="mb-2 text-[10px] uppercase tracking-wide text-zinc-400">Explorer</div>
+                {['src', 'components', 'utils', 'hooks', 'public'].map((f) => (
+                  <div key={f} className="my-1 flex items-center gap-2 text-xs text-zinc-300/90">
+                    <span className="h-1.5 w-1.5 rounded-sm bg-fuchsia-400/70" /> {f}
+                  </div>
+                ))}
+              </div>
+              <div className="col-span-12 rounded-md border border-white/10 bg-black/30 p-3 sm:col-span-9">
+                <CodeLines />
+              </div>
+            </div>
+
+            {/* Glow */}
+            <div className="pointer-events-none absolute -bottom-8 left-1/2 h-24 w-[80%] -translate-x-1/2 rounded-full bg-fuchsia-500/20 blur-2xl" />
+          </motion.div>
+
+          {/* Floating HUD chips around the laptop */}
+          <HUDChip styleClass="-left-32 -top-24" title="Build: Passing" hue="from-emerald-400 to-teal-400" delay={0.2} />
+          <HUDChip styleClass="-right-36 -top-4" title="FPS: 60" hue="from-sky-400 to-cyan-400" delay={0.35} />
+          <HUDChip styleClass="-left-36 top-20" title="Bundle: 120KB" hue="from-fuchsia-400 to-violet-400" delay={0.5} />
+        </motion.div>
+
+        {/* Subtle particles */}
+        <div className="pointer-events-none absolute inset-0">
+          {Array.from({ length: 18 }).map((_, i) => (
+            <motion.span
+              key={i}
+              className="absolute h-1 w-1 rounded-full bg-white/70"
+              style={{ left: `${(i * 53) % 100}%`, top: `${(i * 37) % 100}%` }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.2, 0.8, 0.2], y: [0, -8, 0] }}
+              transition={{ duration: 4 + (i % 5), repeat: Infinity, ease: 'easeInOut', delay: i * 0.15 }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HUDChip({ title, hue, styleClass = '', delay = 0 }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay }}
+      className={`absolute ${styleClass} rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs text-white backdrop-blur-xl`}
+    >
+      <div className={`pointer-events-none absolute -right-6 -top-6 h-14 w-14 rounded-full bg-gradient-to-br ${hue} opacity-40 blur-xl`} />
+      <div className="relative">{title}</div>
+    </motion.div>
+  );
+}
+
+function CodeLines() {
+  const lines = [
+    'import { motion } from "framer-motion"',
+    'import { createRoot } from "react-dom/client"',
+    '',
+    'export function App() {',
+    '  const ready = useReady() \n',
+    '  return (<Scene ready={ready} />)',
+    '}',
+    '',
+    'function Scene({ ready }) {',
+    '  return (',
+    '    <motion.group',
+    '      initial={{ opacity: 0 }}',
+    '      animate={{ opacity: 1 }}',
+    '      transition={{ duration: 0.8 }}',
+    '    />',
+    '  )',
+    '}',
+  ];
+
+  return (
+    <div className="font-mono text-[11px] leading-relaxed">
+      {lines.map((l, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, x: -6 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.02 * i, duration: 0.4 }}
+          className="whitespace-pre text-zinc-300"
+        >
+          <span className="select-none text-zinc-500/60">{String(i + 1).padStart(2, '0')} </span>
+          <span className="text-fuchsia-300/90">{highlight(l)}</span>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function highlight(text) {
+  // very lightweight pseudo-highlighting
+  return text
+    .replaceAll('import', 'import')
+    .replaceAll('from', 'from')
+    .replaceAll('export', 'export')
+    .replaceAll('function', 'function');
 }
